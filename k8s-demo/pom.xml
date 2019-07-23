@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>devops-demo</artifactId>
+	<artifactId>k8s-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>devops-demo</name>
+	<name>k8s-demo</name>
 	<description>自动化部署demo项目</description>
 
 	<properties>
@@ -33,10 +33,68 @@
 
 	<build>
 		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<!--prepare-dockerfile-->
+					<execution>
+						<id>prepare-dockerfile</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/docker</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${project.basedir}/src/main/docker</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<!--<copy todir="${project.build.directory}/docker" overwrite="true" >
+                                    <fileset dir="${project.build.directory}" erroronmissingdir="false">
+                                        <include name="*.jar"/>
+                                    </fileset>
+                                </copy>-->
+								<move file="${project.build.directory}/k8s-demo-0.0.1-SNAPSHOT.jar"
+									  tofile="${project.build.directory}/docker/k8s-demo.jar"/>
+							</tasks>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 
