@@ -17,3 +17,6 @@ docker login -u admin -p Harbor12345 harbor.harry.com:8015
 
 #推送docker镜像到Harbor镜像仓库
 docker push $IMAGE_NAME
+
+#将部署文件发送到k8s服务器
+scp  template/$API_NAME.yaml deploy.sh 192.168.88.130:/harry/deploy/project
