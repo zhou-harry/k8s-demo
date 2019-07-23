@@ -20,4 +20,5 @@ docker push $IMAGE_NAME
 
 #将部署文件发送到k8s服务器
 echo "将部署文件发送到k8s服务器"
+pwd
 scp  template/$API_NAME.yaml deploy.sh 192.168.88.130:/harry/deploy/project
