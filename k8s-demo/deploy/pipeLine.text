@@ -1,0 +1,32 @@
+node {
+   def mvnHome
+   stage('拉取代码') { // for display purposes
+      // Get some code from a GitHub repository
+      git 'http://gitlab.harry.com/root/k8s.git'
+      // Get the Maven tool.
+      // ** NOTE: This 'M3' Maven tool must be configured
+      // **       in the global configuration.
+      mvnHome = tool 'M3'
+   }
+   stage('Maven编译') {
+      // Run the maven build
+      withEnv(["MVN_HOME=$mvnHome"]) {
+        dir('k8s-demo') {
+            sh '"$MVN_HOME/bin/mvn" clean package -Dmaven.test.skip=true'
+        }
+      }
+   }
+   stage('Docker构建') {
+      dir('k8s-demo'){
+          sh 'chmod 755 deploy/build.sh'
+          sh 'deploy/build.sh'
+      }
+   }
+   stage('K8S发布') {
+      echo "start deploy"
+
+   }
+   stage('Jenkins归档') {
+      archiveArtifacts '**/target/docker/*.jar'
+   }
+}
