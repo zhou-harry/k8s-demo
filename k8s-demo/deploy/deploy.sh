@@ -1,5 +1,9 @@
 #!/bin/bash
 
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
 cd /harry/deploy/project
-#k8s 发布
+
 kubectl apply -f k8s-demo.yaml
