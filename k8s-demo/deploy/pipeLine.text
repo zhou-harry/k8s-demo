@@ -24,7 +24,10 @@ node {
    }
    stage('K8S发布') {
       echo "start deploy"
-
+      dir('k8s-demo'){
+          sh 'ssh root@192.168.88.130 "chmod +x /harry/deploy/project/deploy.sh"'
+          sh 'ssh root@192.168.88.130 "/harry/deploy/project/deploy.sh"'
+      }
    }
    stage('Jenkins归档') {
       archiveArtifacts '**/target/docker/*.jar'
