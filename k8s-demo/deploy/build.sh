@@ -23,4 +23,4 @@ cd $WORKSPACE/$API_NAME/deploy
 echo "将部署文件发送到k8s服务器"
 scp template/$API_NAME.yaml .
 sed -i "s@1.0.0@$BUILD_NUMBER@g" $API_NAME.yaml
-scp  template/$API_NAME.yaml deploy.sh 192.168.88.130:/harry/deploy/project
+scp $API_NAME.yaml deploy.sh 192.168.88.130:/harry/deploy/project
