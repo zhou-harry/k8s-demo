@@ -35,7 +35,13 @@ metadata:
   namespace: default
 spec:
   replicas: 2
-  revisionHistoryLimit: 10
+  revisionHistoryLimit: 15
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
   selector:
     matchLabels:
       app: k8s-demo-app
@@ -45,16 +51,12 @@ spec:
         app: k8s-demo-app
     spec:
       #hostNetwork: true
+      terminationGracePeriodSeconds: 60
+      restartPolicy: Always
+      dnsPolicy: ClusterFirst
       containers:
         - name: k8s-demo
           image: harbor.harry.com:8015/harry/k8s-demo:v1.0.0
           ports:
             - containerPort: 8080
               protocol: TCP
-          args:
-          livenessProbe:
-            httpGet:
-              path: /index
-              port: 8080
-            initialDelaySeconds: 30
-            timeoutSeconds: 30
