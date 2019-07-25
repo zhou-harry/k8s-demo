@@ -31,7 +31,7 @@ kind: ConfigMap
 metadata:
   name: k8s-demo-env-configmap
 data:
-  application_name: K8S-DEMO
+  application_name: K8S_DEMO
 ---
 kind: Deployment
 apiVersion: extensions/v1beta1
