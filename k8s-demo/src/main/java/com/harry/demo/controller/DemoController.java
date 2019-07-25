@@ -23,7 +23,7 @@ public class DemoController {
 
     @GetMapping("index")
     public String index() {
-        logger.info("后台服务 %s 启动成功！", applicationName);
+        logger.info("后台服务 {} 启动成功！", applicationName);
         return "k8s deploy intergration was success！the application name is ："+applicationName;
     }
 
