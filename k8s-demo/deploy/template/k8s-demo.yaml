@@ -69,7 +69,7 @@ spec:
               protocol: TCP
         env:
           - name: APPLICATION_NAME
-              valueFrom:
-                configMapKeyRef:
-                  name: k8s-demo-env-configmap
-                  key: application_name
+            valueFrom:
+              configMapKeyRef:
+                name: k8s-demo-env-configmap
+                key: application_name
