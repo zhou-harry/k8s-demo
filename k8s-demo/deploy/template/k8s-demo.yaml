@@ -26,6 +26,13 @@ spec:
   selector:
     app: k8s-demo-app
 ---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: k8s-demo-env-configmap
+data:
+  application_name: K8S-DEMO
+---
 kind: Deployment
 apiVersion: extensions/v1beta1
 metadata:
@@ -60,3 +67,9 @@ spec:
           ports:
             - containerPort: 8080
               protocol: TCP
+        env:
+        - name: APPLICATION_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: k8s-demo-env-configmap
+                key: application_name
