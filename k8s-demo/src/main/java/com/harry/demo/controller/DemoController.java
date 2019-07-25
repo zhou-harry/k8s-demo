@@ -1,5 +1,6 @@
 package com.harry.demo.controller;
 
+import com.sun.javafx.binding.StringFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,11 +21,16 @@ public class DemoController {
 
     @Value("${spring.application.name}")
     private String applicationName;
+    @Value("${harry.username}")
+    private String username;
+    @Value("${harry.password}")
+    private String password;
 
     @GetMapping("index")
     public String index() {
-        logger.info("后台服务 {} 启动成功！", applicationName);
-        return "k8s deploy intergration was success！the application name is ："+applicationName;
+        logger.info("后台服务 {} 启动成功，后台用户：{}，密码：{}", applicationName, username, password);
+        return StringFormatter.format("后台服务 {} 启动成功，后台用户：{}，密码：{}", applicationName, username, password).getValue();
+//        return "k8s deploy intergration was success！the application name is ：" + applicationName;
     }
 
 }

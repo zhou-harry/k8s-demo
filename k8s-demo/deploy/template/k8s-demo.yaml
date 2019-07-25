@@ -31,7 +31,17 @@ kind: ConfigMap
 metadata:
   name: k8s-demo-env-configmap
 data:
-  application_name: "K8S-DEMO"
+  application_name: K8S-DEMO
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: k8s-demo-env-secret
+data:
+  password: ZGF5aTEyMwo=
+stringData:
+  username: admin
+type: Opaque
 ---
 kind: Deployment
 apiVersion: extensions/v1beta1
@@ -73,3 +83,13 @@ spec:
                 configMapKeyRef:
                   name: k8s-demo-env-configmap
                   key: application_name
+            - name: USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: k8s-demo-env-secret
+                  key: username
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: k8s-demo-env-secret
+                  key: password
