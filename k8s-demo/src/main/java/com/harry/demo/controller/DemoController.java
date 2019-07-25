@@ -1,5 +1,6 @@
 package com.harry.demo.controller;
 
+import com.sun.deploy.util.StringUtils;
 import com.sun.javafx.binding.StringFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,8 +30,7 @@ public class DemoController {
     @GetMapping("index")
     public String index() {
         logger.info("后台服务 {} 启动成功，后台用户：{}，密码：{}", applicationName, username, password);
-        return StringFormatter.format("后台服务 {} 启动成功，后台用户：{}，密码：{}", applicationName, username, password).getValue();
-//        return "k8s deploy intergration was success！the application name is ：" + applicationName;
+        return "后台服务 "+applicationName+" 启动成功，后台用户："+username+"，密码："+password;
     }
 
 }
