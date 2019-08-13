@@ -6,11 +6,10 @@ ADD k8s-demo.jar /app.jar
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN echo 'Asia/Shanghai' >/etc/timezone
 
-COPY libsapjco3.so /libsapjco3.so
-RUN chmod a+x -R  libsapjco3.so
+COPY /so /so
+#添加可执行权限
+RUN chmod a+x -R  /so
+#创建so软链到/usr/lib下
+RUN ln -s /so /usr/lib
 
-COPY libuuid.so.1 /libuuid.so.1
-RUN chmod a+x -R  libuuid.so.1
-RUN ln -s /libuuid.so.1 /usr/lib
-
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","-Djava.library.path=/","/app.jar"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","-Djava.library.path=/so","/app.jar"]
