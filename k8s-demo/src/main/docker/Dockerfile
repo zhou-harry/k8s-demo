@@ -10,6 +10,6 @@ COPY /so /so
 #添加可执行权限
 RUN chmod a+x -R  so
 #创建so软链到/usr/lib下
-RUN ln -s /so/libuuid.so.1 /usr/lib && ln -s /so/ld-linux-x86-64.so.2 /usr/lib
-
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","-Djava.library.path=/so","/app.jar"]
+RUN ln -s /so/libuuid.so.1 /usr/lib && ln -s /so/ld-linux-x86-64.so.2 /usr/lib && ln -s /so/libsapjco3.so /usr/lib
+# "-Djava.library.path=/so",
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
