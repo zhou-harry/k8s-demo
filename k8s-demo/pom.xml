@@ -53,13 +53,13 @@
 			<version>23.0</version>
 		</dependency>
 
-		<dependency>
-			<groupId>com.sap</groupId>
-			<artifactId>sapjco3</artifactId>
-			<version>3.0.19</version>
-			<systemPath>${project.basedir}/lib/sapjco3.jar</systemPath>
-			<scope>system</scope>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.sap</groupId>-->
+<!--			<artifactId>sapjco3</artifactId>-->
+<!--			<version>3.0.19</version>-->
+<!--			<systemPath>${project.basedir}/lib/sapjco3.jar</systemPath>-->
+<!--			<scope>system</scope>-->
+<!--		</dependency>-->
 	</dependencies>
 
 	<build>
