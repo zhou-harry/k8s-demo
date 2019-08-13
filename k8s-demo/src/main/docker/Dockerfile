@@ -9,4 +9,7 @@ RUN echo 'Asia/Shanghai' >/etc/timezone
 COPY libsapjco3.so /libsapjco3.so
 RUN chmod a+x -R  libsapjco3.so
 
+COPY libuuid.so.1 /libuuid.so.1
+RUN chmod a+x -R  libuuid.so.1
+
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","-Djava.library.path=/","/app.jar"]
