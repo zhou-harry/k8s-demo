@@ -55,7 +55,7 @@ public class CustomJcoServiceImpl implements CustomJcoService {
 
         JcoDestinationDataProvider provider = new JcoDestinationDataProvider();
         try {
-            Environment.registerDestinationDataProvider(provider);
+//            Environment.registerDestinationDataProvider(provider);
         } catch (IllegalStateException providerAlreadyRegisteredException) {
             //somebody else registered its implementation,
             //stop the execution
