@@ -12,5 +12,7 @@ COPY /so /so
 RUN chmod a+x -R  so
 #创建so软链到/usr/lib下
 RUN ln -s /so/libuuid.so.1 /usr/lib && ln -s /so/ld-linux-x86-64.so.2 /usr/lib && ln -s /so/libsapjco3.so /usr/lib
+
+RUN export LD_BIND_NOW=1
 # "-Djava.library.path=/so",
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
