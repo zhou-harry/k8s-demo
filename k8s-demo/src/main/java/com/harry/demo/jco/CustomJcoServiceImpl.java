@@ -21,7 +21,7 @@ import java.util.*;
  * @date 2019/8/7 10:33
  */
 
-//@Service
+@Service
 public class CustomJcoServiceImpl implements CustomJcoService {
 
     @Autowired
