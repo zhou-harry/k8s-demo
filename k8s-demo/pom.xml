@@ -104,6 +104,25 @@
 							</resources>
 						</configuration>
 					</execution>
+					<!--prepare-sapjco-->
+					<execution>
+						<id>prepare-sapjco</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/docker</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${project.basedir}/lib</directory>
+									<includes>
+										<include>**/*.so</include>
+									</includes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
 					<!--default-resources-->
 					<execution>
 						<id>default-resources</id>
@@ -127,14 +146,6 @@
 									<targetPath>BOOT-INF/lib/</targetPath>
 									<includes>
 										<include>**/*.jar</include>
-									</includes>
-								</resource>
-								<resource>
-									<directory>${project.basedir}/lib</directory>
-									<targetPath>BOOT-INF</targetPath>
-									<includes>
-										<include>**/*.so</include>
-										<include>**/*.dll</include>
 									</includes>
 								</resource>
 								<resource>
