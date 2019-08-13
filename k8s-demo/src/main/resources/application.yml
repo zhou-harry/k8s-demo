@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: ${APPLICATION_NAME}
+
+harry:
+  username: ${USERNAME}
+  password: ${PASSWORD}
+
+#sap¡¨Ω”≈‰÷√
+sap:
+  jco:
+    provider:
+      destName: ABAP
+      ashost: 10.1.118.73
+      client: 140
+      sysnr: 06
+      lang: zh
+      user: ILAS
+      passwd: Tplhk12345
+      pool_capacity: 10
+      peak_limit: 50

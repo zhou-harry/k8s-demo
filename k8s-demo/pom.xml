@@ -26,8 +26,39 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.8</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>23.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sap</groupId>
+			<artifactId>sapjco3</artifactId>
+			<version>3.0.19</version>
+			<systemPath>${project.basedir}/lib/sapjco3.jar</systemPath>
+			<scope>system</scope>
 		</dependency>
 	</dependencies>
 
@@ -40,6 +71,10 @@
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
+					<encoding>UTF-8</encoding>
+					<compilerArguments>
+						<extdirs>${project.basedir}/lib</extdirs>
+					</compilerArguments>
 				</configuration>
 			</plugin>
 
@@ -65,6 +100,46 @@
 								<resource>
 									<directory>${project.basedir}/src/main/docker</directory>
 									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+					<!--default-resources-->
+					<execution>
+						<id>default-resources</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>target/classes</outputDirectory>
+							<useDefaultDelimiters>false</useDefaultDelimiters>
+							<delimiters>
+								<delimiter>@</delimiter>
+							</delimiters>
+							<resources>
+								<resource>
+									<directory>src/main/resources/</directory>
+									<filtering>true</filtering>
+								</resource>
+								<resource>
+									<directory>${project.basedir}/lib</directory>
+									<targetPath>BOOT-INF/lib/</targetPath>
+									<includes>
+										<include>**/*.jar</include>
+									</includes>
+								</resource>
+								<resource>
+									<directory>${project.basedir}/lib</directory>
+									<targetPath>BOOT-INF</targetPath>
+									<includes>
+										<include>**/*.so</include>
+										<include>**/*.dll</include>
+									</includes>
+								</resource>
+								<resource>
+									<directory>src/main/resources</directory>
+									<targetPath>BOOT-INF/classes/</targetPath>
 								</resource>
 							</resources>
 						</configuration>
