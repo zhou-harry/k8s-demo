@@ -41,13 +41,13 @@ public class DemoController {
         return "后台服务 "+applicationName+" 启动成功，后台用户："+username+"，密码："+password;
     }
 
-    @GetMapping("/ping")
-    public R pingCalls() {
-
-        R r = customJcoService.pingCalls( properties.getDestName() );
-
-        return r;
-
-    }
+//    @GetMapping("/ping")
+//    public R pingCalls() {
+//
+//        R r = customJcoService.pingCalls( properties.getDestName() );
+//
+//        return r;
+//
+//    }
 
 }
