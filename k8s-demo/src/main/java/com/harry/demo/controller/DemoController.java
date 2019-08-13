@@ -29,8 +29,8 @@ public class DemoController {
     @Value("${harry.password}")
     private String password;
 
-    @Autowired
-    private CustomJcoService customJcoService;
+//    @Autowired
+//    private CustomJcoService customJcoService;
 
     @Autowired
     private JcoProperties properties;
