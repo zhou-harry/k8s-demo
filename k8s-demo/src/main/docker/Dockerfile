@@ -11,5 +11,6 @@ RUN chmod a+x -R  libsapjco3.so
 
 COPY libuuid.so.1 /libuuid.so.1
 RUN chmod a+x -R  libuuid.so.1
+RUN ln -s /libuuid.so.1 /usr/lib
 
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","-Djava.library.path=/","/app.jar"]
