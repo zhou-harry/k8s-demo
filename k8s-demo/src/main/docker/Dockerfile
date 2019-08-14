@@ -1,5 +1,5 @@
 #FROM openjdk:8-jdk-alpine
-FROM openjdk:8u181-jdk-alpine
+FROM java:8-jre
 VOLUME /tmp
 ADD k8s-demo.jar /app.jar
 #RUN bash -c 'touch app.jar'
