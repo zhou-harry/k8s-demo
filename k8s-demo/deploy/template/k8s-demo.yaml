@@ -93,5 +93,5 @@ spec:
                 secretKeyRef:
                   name: k8s-demo-env-secret
                   key: password
-#            - name: LD_LIBRARY_PATH
-#              value: /usr/lib/nvidia
+            - name: LD_LIBRARY_PATH
+              value: /so
