@@ -41,9 +41,9 @@ public class DemoController {
         return "后台服务 "+applicationName+" 启动成功，后台用户："+username+"，密码："+password;
     }
 
-    @GetMapping("/ping")
+    @GetMapping("ping")
     public R pingCalls() {
-
+        logger.info("测试与SAP系统连通性： {} ", properties.getDestName());
         R r = customJcoService.pingCalls( properties.getDestName() );
 
         return r;
