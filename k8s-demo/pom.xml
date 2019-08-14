@@ -119,7 +119,7 @@
 									<includes>
 										<include>**/*.so</include>
 										<include>**/*.so.*</include>
-										<include>**/*.zip</include>
+										<include>**/*.a</include>
 									</includes>
 								</resource>
 							</resources>
