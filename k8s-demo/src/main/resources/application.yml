@@ -11,7 +11,7 @@ sap:
   jco:
     provider:
       destName: ABAP
-      ashost: http://sap
+      ashost: http://sap:80
       client: 140
       sysnr: 06
       lang: zh
