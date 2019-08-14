@@ -8,6 +8,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN echo 'Asia/Shanghai' >/etc/timezone
 
 COPY /so /so
+COPY /usr/lib64 /usr/lib64
 #添加可执行权限
 RUN chmod a+x -R  so
 #创建so软链到/usr/lib下
