@@ -1,5 +1,5 @@
 # K8s部署Maven+Spring项目通过Sapjco3对接SAP系统
-
+另有一篇文章可供参考：[Spring boot 通过RFC连接SAP部署到Docker](https://blog.csdn.net/wenfeifang/article/details/88676326)
 ### Sapjco3+Maven项目联调
 
 *  创建本地Lib目录，并将官方sapjco3.jar放入该目录；
