@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2019/7/23 11:10++
  */
 @RestController
-public class DemoController {
+public class JcoController {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
