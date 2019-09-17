@@ -11,7 +11,7 @@ import java.util.concurrent.Executors;
  * @author zhouhong
  * @version 1.0
  * @title: RateLimiterTest
- * @description: 基于令牌桶算法的限流
+ * @description: 基于令牌桶算法的限流（适用于单机限流）
  * @date 2019/9/4 10:52
  */
 public class RateLimiterTest {
