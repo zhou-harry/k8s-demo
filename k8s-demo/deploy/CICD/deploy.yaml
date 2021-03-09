@@ -1,0 +1,85 @@
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    app: k8s-demo-app
+  name: k8s-demo-service
+  namespace: default
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 8080
+      nodePort: 58080
+  selector:
+    app: k8s-demo-app
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: k8s-demo-env-configmap
+data:
+  application_name: K8S-DEMO
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: k8s-demo-env-secret
+data:
+  password: ZGF5aTEyMwo=
+stringData:
+  username: admin
+type: Opaque
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    app: k8s-demo-app
+  name: k8s-demo-app
+  namespace: default
+spec:
+  replicas: 2
+  revisionHistoryLimit: 15
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: k8s-demo-app
+  template:
+    metadata:
+      labels:
+        app: k8s-demo-app
+    spec:
+      #hostNetwork: true
+      terminationGracePeriodSeconds: 60
+      restartPolicy: Always
+      dnsPolicy: ClusterFirst
+      containers:
+        - name: k8s-demo
+          image: image:v
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          env:
+            - name: APPLICATION_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: k8s-demo-env-configmap
+                  key: application_name
+            - name: USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: k8s-demo-env-secret
+                  key: username
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: k8s-demo-env-secret
+                  key: password
+            - name: LD_LIBRARY_PATH
+              value: /so

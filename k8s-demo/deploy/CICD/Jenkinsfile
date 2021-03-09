@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('代码同步') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'gitlab-root', url: 'http://k8s-master:8016/root/k8s-demo.git']]])
+            }
+        }
+        stage('编译') {
+            steps {
+                sh 'mvn clean package -Dmaven.test.skip=true'
+            }
+        }
+        stage('打包') {
+            steps {
+                sh 'chmod 755 deploy/build.sh'
+                sh 'deploy/build.sh'
+            }
+        }
+        stage('部署') {
+            steps {
+                sh 'chmod 755 deploy/deploy.sh'
+                sh 'deploy/deploy.sh'
+            }
+        }
+        stage('归档') {
+            steps {
+                archiveArtifacts '**/target/docker/*.jar'
+            }
+        }
+    }
+}
