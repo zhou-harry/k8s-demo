@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('代码同步') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'gitlab-root', url: 'http://k8s-master:8016/root/k8s-demo.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/${branch}']], extensions: [], userRemoteConfigs: [[credentialsId: 'gitlab-root', url: 'http://k8s-master:8016/root/k8s-demo.git']]])
             }
         }
         stage('编译') {
